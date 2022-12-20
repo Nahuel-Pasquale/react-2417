@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const WrapperSmall = styled.div`
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 80%;
   width: 80%;
   border: 1px dashed #ff005c;
   border-radius: 20px;

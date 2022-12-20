@@ -8,10 +8,11 @@
 // import { counterInitialState, counterReducer } from '../../reducer/counterReducer';
 // import { TYPES } from '../../actionsTypes/countActions';
 import { CounterButtonsContainerStyled, CounterContainerStyled, CounterSpanStyled } from './CounterStyles'
-import { useCountContext } from '../../context/CountContext';
+// import { useCountContext } from '../../context/CountContext';
 import Add from '../add/Add';
 import Substract from '../substract/Substract';
 import Reset from '../reset/Reset';
+import { useCountContext } from '../../context/CountContext';
 
 
 

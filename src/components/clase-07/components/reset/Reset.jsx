@@ -1,19 +1,18 @@
 import React from 'react'
 import { BiReset } from 'react-icons/bi'
-import { TYPES } from '../../actionsTypes/countActions';
-import { useCountContext } from '../../context/CountContext';
+import { useDispatch } from 'react-redux'
+import { reset } from '../../actions/counterActions'
 
 const Reset = () => {
-  const { dispatch } = useCountContext();
+  const dispatch = useDispatch();
 
-  const handleReset = () => dispatch({ type: TYPES.RESET })
   return (
     <>
       <BiReset 
         size='38px' 
         color='#f24c4c'
         cursor='pointer'
-        onClick={handleReset}
+        onClick={() => dispatch(reset())}
       />
     </>
   )
