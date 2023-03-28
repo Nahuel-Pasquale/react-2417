@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import AuthContext from '../../context/AuthContext';
 import { Card } from '../Products/Products';
@@ -37,10 +38,17 @@ const LoginContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const Login = () => {
+const Login = () => {
   const { handleSubmit, handleChange, form, isAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/');
+    }
+  }, [navigate, isAuth])
+
+
   return (
     <LoginContainer>
       <Card>
@@ -73,3 +81,5 @@ export const Login = () => {
     </LoginContainer>
   );
 };
+
+export default Login;

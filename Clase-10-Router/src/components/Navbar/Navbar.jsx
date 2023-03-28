@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import AuthContext from '../../context/AuthContext';
 
 const NavbarContainer = styled.header`
   display: flex;
@@ -26,15 +28,17 @@ const LinkContainer = styled.ul`
   gap: 20px;
 `;
 
-const NavLinkStyled = styled.a`
+const NavLinkStyled = styled(NavLink)`
   color: white;
 `;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { isAuth, user } = useContext(AuthContext);
 
   return (
     <NavbarContainer>
-      <Logo onClick={() => console.log('/')}>
+      <Logo onClick={() => navigate('/')}>
         <img
           src='https://renderer-v2.vercel.app/_next/image?url=https%3A%2F%2Fapi.typedream.com%2Fv0%2Fdocument%2Fpublic%2Fac4f6f0d-8160-4e58-9d18-cb5e7c880fb6_Recurso_32_png.png&w=384&q=75'
           alt=''
@@ -42,9 +46,11 @@ const Navbar = () => {
       </Logo>
 
       <LinkContainer>
-        <NavLinkStyled href='/'>Home</NavLinkStyled>
-        <NavLinkStyled href='/products'>Products</NavLinkStyled>
-        <NavLinkStyled href='/login'>Login</NavLinkStyled>
+        <NavLinkStyled to='/'> Home </NavLinkStyled>
+        <NavLinkStyled to='/products'> Products </NavLinkStyled>
+        <NavLinkStyled to={ isAuth ? `/usuario/${user}` : '/login' }>
+          { isAuth ? 'Perfil' : 'Login' } 
+        </NavLinkStyled>
       </LinkContainer>
     </NavbarContainer>
   );
