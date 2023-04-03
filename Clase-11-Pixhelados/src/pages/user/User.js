@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import Button from "../../components/button/Button";
 import Panel from "../../components/panel/Panel";
 import Title from "../../components/title/Title";
+import AuthContext from "../../context/AuthContext";
 import {
   ContainerButtonStyled,
   LogoutIcon,
@@ -8,16 +11,20 @@ import {
 } from "./UserStyles";
 
 const User = () => {
+
+  const { username } = useParams();
+  const { handleLogout } = useContext(AuthContext);
+
   return (
     <UserContainerStyled>
-      <Title>{`Bienvenido Pepito`}</Title>
+      <Title>{`Bienvenido ${ username }`}</Title>
       <Panel>
         {" "}
-        Pepito te felicito. Ya estas en una página privada gracias a React
+        { username } te felicito. Ya estas en una página privada gracias a React
         Router y Nucba{" "}
       </Panel>
       <ContainerButtonStyled>
-        <Button primary onClick={(e) => e.preventDefault()}>
+        <Button primary onClick={(e) => handleLogout()}>
           {" "}
           Cerrar sesión <LogoutIcon />{" "}
         </Button>
