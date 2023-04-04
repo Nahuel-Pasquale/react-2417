@@ -37,7 +37,7 @@ function Navbar() {
         </Link>
       </div>
       <LinksContainerStyled>
-        <motion.div whileTap={{ scale: 0.97 }}>
+        <motion.div whileTap={{ scale: 0.95 }}>
           <Link to='/'>
             <LinkContainerStyled home>
               <HiHome />
