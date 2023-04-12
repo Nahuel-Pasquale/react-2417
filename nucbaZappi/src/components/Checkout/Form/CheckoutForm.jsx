@@ -44,7 +44,7 @@ const CheckoutForm = () => {
             Dirección
           </Input>
           <div>
-            <Submit disabled='true'>Iniciar Pedido</Submit>
+            <Submit disabled={true}>Iniciar Pedido</Submit>
           </div>
         </Form>
       </Formik>

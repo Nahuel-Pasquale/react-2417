@@ -62,7 +62,7 @@ const ModalCart = ({ hiddenCart, setHiddenCart }) => {
                 <Increase
                   onClick={e => e.preventDefault()}
                   bgColor='var(--magenta)'
-                  disabled='true'
+                  disabled={true}
                 >
                   <IoMdTrash />
                 </Increase>

@@ -3,11 +3,13 @@ import Button from '../UI/Button/Button';
 
 import { ProductosContainer } from './CardsProductosStyles';
 import { ButtonContainerStyled } from '../../pages/Home/HomeStyles';
-import { Products, products } from '../../data/Products';
+import { useSelector } from 'react-redux';
 
-console.log(Object.entries(Products))
+// console.log(Object.entries(Products))
 
 const CardsProductos = () => {
+
+  const products = useSelector(state => state.products.products)
 
   return (
     <>
@@ -28,11 +30,11 @@ const CardsProductos = () => {
         <Button
           onClick={e => e.preventDefault()}
           secondary='true'
-          disabled='true'
+          disabled={true}
         >
           <span>Ver menos</span>
         </Button>
-        <Button onClick={e => e.preventDefault()} disabled='true'>
+        <Button onClick={e => e.preventDefault()} disabled={true}>
           Ver más
         </Button>
       </ButtonContainerStyled>
