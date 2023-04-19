@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 export const recommendedSlice = createSlice({
  name: 'recommended',
  initialState: INITIAL_STATE,
- reducer: {
+ reducers: {
    randomRecommended: state => {
     return state;
    }

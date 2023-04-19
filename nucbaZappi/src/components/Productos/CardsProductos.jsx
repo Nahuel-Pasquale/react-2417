@@ -4,40 +4,50 @@ import Button from '../UI/Button/Button';
 import { ProductosContainer } from './CardsProductosStyles';
 import { ButtonContainerStyled } from '../../pages/Home/HomeStyles';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { INITIAL_LIMIT } from '../../utils';
 
-// console.log(Object.entries(Products))
 
 const CardsProductos = () => {
+  const [limit, setLimit] = useState(INITIAL_LIMIT);
 
-  const products = useSelector(state => state.products.products)
+  let products = useSelector(state => state.products.products);
+  const totalProducts = useSelector(state => state.products.totalProducts);
+  const selectedCategory = useSelector(state => state.categories.selectedCategory);
+
+  if(selectedCategory) {
+    products = products.filter(e => e.category === selectedCategory);
+  }
 
   return (
     <>
       <ProductosContainer>
-        {/* {
-          Object.entries(Products).map(([, foods]) => (
-            foods.map(food => <CardProducto key={food.id}  { ...food } />)
-          ))
-        } */}
         { 
-          products.map(prod => (
-          <CardProducto key={prod.id} { ...prod } />
-          )) 
+          products.map((prod, i) => {
+            if(limit > i){
+              return <CardProducto key={prod.id} { ...prod } />
+            }
+            return null;
+          })
         }
       </ProductosContainer>
 
-      <ButtonContainerStyled>
-        <Button
-          onClick={e => e.preventDefault()}
-          secondary='true'
-          disabled={true}
-        >
-          <span>Ver menos</span>
-        </Button>
-        <Button onClick={e => e.preventDefault()} disabled={true}>
-          Ver más
-        </Button>
-      </ButtonContainerStyled>
+      {(!selectedCategory &&
+        <ButtonContainerStyled>
+          <Button
+            onClick={() => setLimit(prevLimit => prevLimit - INITIAL_LIMIT)}
+            secondary='true'
+            disabled={ INITIAL_LIMIT === limit }
+          >
+            <span>Ver menos</span>
+          </Button>
+          <Button 
+            onClick={() => setLimit(prevLimit => prevLimit + INITIAL_LIMIT)} 
+            disabled={ totalProducts <= limit }>
+            Ver más
+          </Button>
+        </ButtonContainerStyled>
+      )}
     </>
   );
 };

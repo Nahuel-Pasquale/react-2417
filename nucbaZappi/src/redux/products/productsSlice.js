@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 export const productsSlice = createSlice({
  name: 'products',
  initialState: INITIAL_STATE,
- reducer: {
+ reducers: {
    getProducts: state => {
     return state;
    }
