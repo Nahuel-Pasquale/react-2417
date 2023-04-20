@@ -5,14 +5,31 @@ import {
   InputStyled,
   ErrorStyled,
 } from "./InputStyles";
+import { ErrorMessage, Field } from "formik";
 
-const Input = ({ label, type }) => {
+const Input = ({ label, type, name, isError,  ...field }) => {
+
+
   return (
     <InputBoxStyled>
       <InputLabelStyled htmlFor={label}>{label}</InputLabelStyled>
-      <InputStyled type={type} id={label} />
+      {/* <InputStyled 
+        error={isError}
+        name={name}
+        type={type} 
+        id={label} 
+        {...field}
+        /> */}
+        <Field 
+          error={isError}
+          name={name}
+          type={type} 
+          id={label}
+          as={InputStyled}
+        />
 
-      {false && <ErrorStyled>Error</ErrorStyled>}
+      {/* {isError && <ErrorStyled> { isError } </ErrorStyled>} */}
+      <ErrorMessage name={ name } component={ErrorStyled} />
     </InputBoxStyled>
   );
 };

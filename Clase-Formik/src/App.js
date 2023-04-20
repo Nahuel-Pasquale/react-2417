@@ -5,7 +5,7 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyles />
-      <FormTurn></FormTurn>
+      <FormTurn />
     </Wrapper>
   );
 }

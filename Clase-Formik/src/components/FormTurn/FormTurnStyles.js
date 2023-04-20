@@ -1,6 +1,14 @@
 import styled from "styled-components";
+import { Form as FormikForm } from "formik";
 
-export const Form = styled.form`
+// export const Form = styled.form`
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap;
+//   column-gap: 30px;
+//   row-gap: 25px;
+// `;
+export const Form = styled(FormikForm)`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
