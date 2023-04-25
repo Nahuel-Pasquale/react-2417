@@ -5,12 +5,14 @@ import recommendedReducer from "./recommended/recommendedSlice";
 import storage from 'redux-persist/lib/storage'
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/lib/persistStore";
+import cartReducer from "./cart/cartSlice"
 
 
 const reducers = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
   recommended: recommendedReducer,
+  cart: cartReducer,
 })
 
 const persistConfig = {
