@@ -62,7 +62,7 @@ function Navbar() {
             () => currentUser ? dispatch(toggleHiddenMenu()) : navigate('/login')
           }>
             <SpanStyled>
-              {currentUser ? `${currentUser.usuario.nombre}` : 'Inicia sesión'}
+              {currentUser ? `${currentUser.nombre}` : 'Inicia sesión'}
             </SpanStyled>
             <FaUserAlt />
           </UserContainerStyled>

@@ -5,8 +5,9 @@ import recommendedReducer from "./recommended/recommendedSlice";
 import storage from 'redux-persist/lib/storage'
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/lib/persistStore";
-import cartReducer from "./cart/cartSlice"
-import userReducer from "./user/userSlice"
+import cartReducer from "./cart/cartSlice";
+import userReducer from "./user/userSlice";
+import ordersReducer from "./orders/ordersSlice";
 
 
 const reducers = combineReducers({
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   recommended: recommendedReducer,
   cart: cartReducer,
   user: userReducer,
+  orders: ordersReducer,
 })
 
 const persistConfig = {

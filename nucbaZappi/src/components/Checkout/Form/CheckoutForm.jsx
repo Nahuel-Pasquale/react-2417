@@ -6,17 +6,44 @@ import Submit from '../../UI/Submit/Submit';
 import { CheckoutDatosStyled, Formik, Form } from './CheckoutFormStyles';
 import { checkoutInitialValues } from '../../../formik/initialValues';
 import { checkoutValidationSchema } from '../../../formik/validationSchema';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createOrder } from '../../../axios/axios-orders';
+import { clearCart } from '../../../redux/cart/cartSlice';
+import Loader from '../../UI/Loader/Loader';
 
-const CheckoutForm = ({ cartItems }) => {
+const CheckoutForm = ({ cartItems, price, shippingCost }) => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { currentUser } = useSelector(state => state.user);
+
   return (
     <CheckoutDatosStyled>
       <h2>Ingresá tus datos</h2>
       <Formik
         initialValues={checkoutInitialValues}
         validationSchema={checkoutValidationSchema}
-        onSubmit={values => console.log(values)}
+        onSubmit={ async values => {
+          const orderData = {
+            items: cartItems,
+            price,
+            shippingCost,
+            total: price + shippingCost,
+            shippingDetails: {...values},
+          }
+          console.log('currentUser ==> ', currentUser);
+          console.log('orderData ==> ', orderData);
+          try {
+            await createOrder(orderData, dispatch, currentUser);
+            navigate('/felicitaciones');
+            dispatch(clearCart());
+          } catch (error) {
+            alert('error')
+          }
+        }}
       >
-        <Form>
+        {({ isSubmitting }) => (<Form>
           <Input
             name='name'
             htmlFor='nombre'
@@ -54,9 +81,11 @@ const CheckoutForm = ({ cartItems }) => {
             Dirección
           </Input>
           <div>
-            <Submit disabled={false}>Iniciar Pedido</Submit>
+            <Submit disabled={!cartItems.length || isSubmitting}>
+              {isSubmitting ? <Loader /> : 'Iniciar Pedido'}
+            </Submit>
           </div>
-        </Form>
+        </Form>)}
       </Formik>
     </CheckoutDatosStyled>
   );

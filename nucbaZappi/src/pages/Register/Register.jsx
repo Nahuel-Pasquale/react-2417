@@ -30,7 +30,8 @@ const Register = () => {
           actions.resetForm()
           if(user) {
             dispatch(setCurrentUser({
-              ...user
+              ...user.usuario,
+              token: user.token
             }))
           }
         }}
